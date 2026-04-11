@@ -1,5 +1,5 @@
 // ============================================
-// flavoseason — Main JavaScript
+// flavoseason — Main JavaScript v2
 // ============================================
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -7,6 +7,31 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Dynamic Year ---
     const yearEl = document.getElementById('year');
     if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+    // --- Cursor Glow Effect ---
+    const cursorGlow = document.getElementById('cursor-glow');
+    if (cursorGlow && window.matchMedia('(min-width: 769px)').matches) {
+        document.addEventListener('mousemove', (e) => {
+            cursorGlow.style.left = e.clientX + 'px';
+            cursorGlow.style.top = e.clientY + 'px';
+        });
+    }
+
+    // --- Hero Particles ---
+    const particlesContainer = document.getElementById('particles');
+    if (particlesContainer) {
+        for (let i = 0; i < 30; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.top = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 6 + 's';
+            particle.style.animationDuration = (4 + Math.random() * 4) + 's';
+            particle.style.width = (1 + Math.random() * 2) + 'px';
+            particle.style.height = particle.style.width;
+            particlesContainer.appendChild(particle);
+        }
+    }
 
     // --- Navbar Scroll Effect ---
     const navbar = document.getElementById('navbar');
@@ -26,14 +51,15 @@ document.addEventListener('DOMContentLoaded', () => {
         hamburger.classList.toggle('active');
         navLinks.classList.toggle('open');
         hamburger.setAttribute('aria-expanded', navLinks.classList.contains('open'));
+        document.body.style.overflow = navLinks.classList.contains('open') ? 'hidden' : '';
     });
 
-    // Close menu when a nav link is clicked
     navLinks.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', () => {
             hamburger.classList.remove('active');
             navLinks.classList.remove('open');
             hamburger.setAttribute('aria-expanded', 'false');
+            document.body.style.overflow = '';
         });
     });
 
@@ -46,13 +72,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 revealObserver.unobserve(entry.target);
             }
         });
-    }, { threshold: 0.15 });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
     revealElements.forEach(el => revealObserver.observe(el));
 
     // --- Active Nav Link on Scroll ---
     const sections = document.querySelectorAll('section[id]');
-    const navAnchors = document.querySelectorAll('.nav-links a');
+    const navAnchors = document.querySelectorAll('.nav-links a[href^="#"]');
 
     const sectionObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -66,54 +92,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
     sections.forEach(section => sectionObserver.observe(section));
 
-    // --- Gallery Filters ---
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    const galleryItems = document.querySelectorAll('.gallery-item');
-
-    filterBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            filterBtns.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-
-            const filter = btn.dataset.filter;
-            galleryItems.forEach(item => {
-                if (filter === 'all' || item.dataset.category === filter) {
-                    item.classList.remove('hidden');
-                } else {
-                    item.classList.add('hidden');
-                }
-            });
+    // --- Counter Animation ---
+    const counters = document.querySelectorAll('.stat-number');
+    const counterObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const target = parseInt(entry.target.dataset.count);
+                let current = 0;
+                const increment = target / 60;
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        entry.target.textContent = target;
+                        clearInterval(timer);
+                    } else {
+                        entry.target.textContent = Math.floor(current);
+                    }
+                }, 25);
+                counterObserver.unobserve(entry.target);
+            }
         });
-    });
+    }, { threshold: 0.5 });
 
-    // --- Lightbox ---
-    const lightbox = document.getElementById('lightbox');
-    const lightboxContent = document.getElementById('lightbox-content');
-    const lightboxClose = document.querySelector('.lightbox-close');
-
-    galleryItems.forEach(item => {
-        item.addEventListener('click', () => {
-            const placeholder = item.querySelector('.gallery-placeholder');
-            const clone = placeholder.cloneNode(true);
-            lightboxContent.innerHTML = '';
-            lightboxContent.appendChild(clone);
-            lightbox.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        });
-    });
-
-    function closeLightbox() {
-        lightbox.classList.remove('active');
-        document.body.style.overflow = '';
-    }
-
-    lightboxClose.addEventListener('click', closeLightbox);
-    lightbox.addEventListener('click', (e) => {
-        if (e.target === lightbox) closeLightbox();
-    });
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') closeLightbox();
-    });
+    counters.forEach(counter => counterObserver.observe(counter));
 
     // --- Smooth Scroll for all anchor links ---
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -125,5 +126,17 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    // --- Parallax on Hero (subtle) ---
+    const hero = document.querySelector('.hero-content');
+    if (hero && window.matchMedia('(min-width: 769px)').matches) {
+        window.addEventListener('scroll', () => {
+            const scrolled = window.scrollY;
+            if (scrolled < window.innerHeight) {
+                hero.style.transform = `translateY(${scrolled * 0.3}px)`;
+                hero.style.opacity = 1 - (scrolled / window.innerHeight);
+            }
+        });
+    }
 
 });
