@@ -245,6 +245,18 @@ body:hover .cursor-glow { opacity: 1; }
     overflow: hidden;
 }
 
+.hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.2;
+    filter: blur(2px);
+}
+
 .hero-particles {
     position: absolute;
     top: 0;
@@ -459,32 +471,13 @@ body:hover .cursor-glow { opacity: 1; }
     position: relative;
 }
 
-.about-image-placeholder {
+.about-photo {
     width: 100%;
     aspect-ratio: 3/4;
-    background: var(--bg-card);
+    object-fit: cover;
     border: 1px solid rgba(201, 168, 76, 0.15);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 16px;
-    color: var(--text-secondary);
     position: relative;
     z-index: 1;
-}
-
-.about-image-placeholder svg {
-    width: 50px;
-    height: 50px;
-    opacity: 0.4;
-}
-
-.about-image-placeholder span {
-    font-size: 0.8rem;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    opacity: 0.4;
 }
 
 .about-image-accent {
@@ -629,10 +622,30 @@ body:hover .cursor-glow { opacity: 1; }
 .service-card {
     background: var(--bg-primary);
     border: 1px solid rgba(255, 255, 255, 0.05);
-    padding: 50px 35px 40px;
     position: relative;
     transition: all var(--transition);
     overflow: hidden;
+}
+
+.service-img {
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+}
+
+.service-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.service-card:hover .service-img img {
+    transform: scale(1.08);
+}
+
+.service-body {
+    padding: 35px 30px 30px;
 }
 
 .service-card::before {
@@ -753,37 +766,177 @@ body:hover .cursor-glow { opacity: 1; }
 .service-link:hover span { transform: translateX(4px); }
 
 /* ============================================
-   INSTAGRAM GALLERY
+   PHOTO GALLERY
    ============================================ */
 
 .gallery {
     background: var(--bg-primary);
 }
 
-.instagram-feed {
-    max-width: 900px;
-    margin: 0 auto 40px;
+.gallery-filters {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
 }
 
-.instagram-embed-wrapper {
-    background: var(--bg-card);
-    border: 1px solid rgba(201, 168, 76, 0.1);
-    padding: 4px;
+.filter-btn {
+    background: transparent;
+    border: 1px solid rgba(201, 168, 76, 0.2);
+    color: var(--text-secondary);
+    padding: 10px 24px;
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all var(--transition);
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--bg-primary);
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.gallery-item {
     position: relative;
     overflow: hidden;
+    cursor: pointer;
+    aspect-ratio: 1;
 }
 
-.instagram-embed-wrapper iframe {
-    display: block;
+.gallery-item img {
     width: 100%;
-    min-height: 600px;
-    border: none;
-    border-radius: 0;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease, filter 0.4s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.08);
+    filter: brightness(0.7);
+}
+
+.gallery-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    background: linear-gradient(transparent, rgba(0,0,0,0.8));
+    transform: translateY(100%);
+    transition: transform var(--transition);
+}
+
+.gallery-item:hover .gallery-overlay {
+    transform: translateY(0);
+}
+
+.gallery-overlay span {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    color: var(--text-primary);
+    letter-spacing: 1px;
+}
+
+.gallery-item.hidden {
+    display: none;
 }
 
 .instagram-cta {
     text-align: center;
-    margin-top: 40px;
+    margin-top: 50px;
+}
+
+/* ============================================
+   LIGHTBOX
+   ============================================ */
+
+.lightbox {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.lightbox.active {
+    display: flex;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    font-size: 2.5rem;
+    cursor: pointer;
+    transition: color var(--transition-fast);
+    z-index: 2001;
+    line-height: 1;
+}
+
+.lightbox-close:hover { color: var(--accent); }
+
+.lightbox-prev,
+.lightbox-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    font-size: 3rem;
+    cursor: pointer;
+    padding: 20px;
+    transition: color var(--transition-fast);
+    z-index: 2001;
+    line-height: 1;
+}
+
+.lightbox-prev { left: 10px; }
+.lightbox-next { right: 10px; }
+.lightbox-prev:hover,
+.lightbox-next:hover { color: var(--accent); }
+
+.lightbox-content {
+    max-width: 85vw;
+    max-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lightbox-content img {
+    max-width: 100%;
+    max-height: 80vh;
+    object-fit: contain;
+}
+
+.lightbox-caption {
+    margin-top: 16px;
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    letter-spacing: 1px;
+    text-align: center;
 }
 
 /* ============================================
@@ -1113,6 +1266,7 @@ body:hover .cursor-glow { opacity: 1; }
     }
 
     .contact-content { grid-template-columns: 1fr; }
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
 
     .footer-top {
         flex-direction: column;
@@ -1163,6 +1317,8 @@ body:hover .cursor-glow { opacity: 1; }
 
 @media (max-width: 480px) {
     .hero-title { letter-spacing: 4px; }
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    .lightbox-prev, .lightbox-next { font-size: 2rem; padding: 10px; }
     .about-stats { flex-direction: column; gap: 16px; }
     .stat-divider { width: 40px; height: 1px; }
     .contact-card { padding: 24px; }

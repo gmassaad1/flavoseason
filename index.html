@@ -46,6 +46,7 @@
     <main>
         <!-- Hero Section -->
         <section id="home" class="hero">
+            <div class="hero-bg" style="background-image: url('images-confections.jpeg');"></div>
             <div class="hero-particles" id="particles"></div>
             <div class="hero-overlay"></div>
             <div class="hero-content">
@@ -81,13 +82,7 @@
                 <div class="about-content">
                     <div class="about-left reveal">
                         <div class="about-image-frame">
-                            <div class="about-image-placeholder">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                                    <circle cx="12" cy="7" r="4"/>
-                                </svg>
-                                <span>Photo Coming Soon</span>
-                            </div>
+                            <img src="images-eclairs.jpeg" alt="Handcrafted chocolate eclairs by flavoseason" class="about-photo" loading="lazy">
                             <div class="about-image-accent"></div>
                         </div>
                         <div class="about-stats">
@@ -98,7 +93,7 @@
                             <div class="stat-divider"></div>
                             <div class="stat">
                                 <span class="stat-number" data-count="50">0</span><span class="stat-plus">+</span>
-                                <span class="stat-label">Paintings</span>
+                                <span class="stat-label">Creations</span>
                             </div>
                             <div class="stat-divider"></div>
                             <div class="stat">
@@ -136,95 +131,183 @@
                 <h2 class="section-title reveal">Three Passions, <em>One Vision</em></h2>
                 <div class="services-grid">
                     <div class="service-card reveal" data-service="chef">
-                        <div class="service-number">01</div>
-                        <div class="service-icon-wrap">
-                            <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5">
-                                <path d="M32 8c-12 0-22 8-22 18h44c0-10-10-18-22-18z"/>
-                                <rect x="8" y="26" width="48" height="4" rx="2"/>
-                                <path d="M12 30v6c0 8 8 14 20 14s20-6 20-14v-6"/>
-                                <line x1="32" y1="4" x2="32" y2="8"/>
-                                <path d="M28 4c0-2 8-2 8 0"/>
-                            </svg>
+                        <div class="service-img">
+                            <img src="images-caramel-eclairs.jpeg" alt="Caramel eclairs by flavoseason" loading="lazy">
                         </div>
-                        <h3>Chef Services</h3>
-                        <p>From intimate private dinners to full-scale catering, I craft personalized menus that transform fresh, seasonal ingredients into extraordinary culinary experiences.</p>
-                        <ul class="service-features">
-                            <li>Private Dining</li>
-                            <li>Catering</li>
-                            <li>Menu Consulting</li>
-                            <li>Cooking Workshops</li>
-                        </ul>
-                        <a href="#contact" class="service-link">Book Now <span>&rarr;</span></a>
+                        <div class="service-body">
+                            <div class="service-number">01</div>
+                            <h3>Chef Services</h3>
+                            <p>From intimate private dinners to full-scale catering, I craft personalized menus that transform fresh, seasonal ingredients into extraordinary culinary experiences.</p>
+                            <ul class="service-features">
+                                <li>Private Dining</li>
+                                <li>Catering</li>
+                                <li>Menu Consulting</li>
+                                <li>Cooking Workshops</li>
+                            </ul>
+                            <a href="#contact" class="service-link">Book Now <span>&rarr;</span></a>
+                        </div>
                     </div>
                     <div class="service-card reveal featured" data-service="events">
                         <div class="service-badge">Most Popular</div>
-                        <div class="service-number">02</div>
-                        <div class="service-icon-wrap">
-                            <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5">
-                                <rect x="8" y="12" width="48" height="40" rx="4"/>
-                                <line x1="8" y1="24" x2="56" y2="24"/>
-                                <line x1="20" y1="12" x2="20" y2="24"/>
-                                <line x1="44" y1="12" x2="44" y2="24"/>
-                                <circle cx="24" cy="36" r="4"/>
-                                <circle cx="40" cy="36" r="4"/>
-                                <circle cx="32" cy="44" r="4"/>
-                            </svg>
+                        <div class="service-img">
+                            <img src="images-confections.jpeg" alt="Confections and treats platter" loading="lazy">
                         </div>
-                        <h3>Event Planning</h3>
-                        <p>Every event tells a story. I design and execute bespoke experiences — from elegant soirees to vibrant celebrations — with meticulous attention to every detail.</p>
-                        <ul class="service-features">
-                            <li>Corporate Events</li>
-                            <li>Private Parties</li>
-                            <li>Wedding Receptions</li>
-                            <li>Pop-up Experiences</li>
-                        </ul>
-                        <a href="#contact" class="service-link">Book Now <span>&rarr;</span></a>
+                        <div class="service-body">
+                            <div class="service-number">02</div>
+                            <h3>Event Planning</h3>
+                            <p>Every event tells a story. I design and execute bespoke experiences — from elegant soirees to vibrant celebrations — with meticulous attention to every detail.</p>
+                            <ul class="service-features">
+                                <li>Corporate Events</li>
+                                <li>Private Parties</li>
+                                <li>Wedding Receptions</li>
+                                <li>Pop-up Experiences</li>
+                            </ul>
+                            <a href="#contact" class="service-link">Book Now <span>&rarr;</span></a>
+                        </div>
                     </div>
                     <div class="service-card reveal" data-service="art">
-                        <div class="service-number">03</div>
-                        <div class="service-icon-wrap">
-                            <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5">
-                                <rect x="8" y="8" width="48" height="48" rx="2"/>
-                                <rect x="12" y="12" width="40" height="40" rx="1"/>
-                                <circle cx="28" cy="32" r="8"/>
-                                <path d="M36 28c4 0 8 2 8 8"/>
-                                <line x1="20" y1="44" x2="44" y2="44"/>
-                            </svg>
+                        <div class="service-img">
+                            <img src="images-gold-chocolates.jpeg" alt="Gold-dusted artisan chocolates" loading="lazy">
                         </div>
-                        <h3>Painting & Art</h3>
-                        <p>My paintings explore the intersection of color, texture, and emotion. Each piece is a unique expression — available as originals or commissioned works tailored to your vision.</p>
-                        <ul class="service-features">
-                            <li>Original Paintings</li>
-                            <li>Commissioned Work</li>
-                            <li>Art Exhibitions</li>
-                            <li>Custom Pieces</li>
-                        </ul>
-                        <a href="#contact" class="service-link">Inquire <span>&rarr;</span></a>
+                        <div class="service-body">
+                            <div class="service-number">03</div>
+                            <h3>Painting & Art</h3>
+                            <p>My paintings explore the intersection of color, texture, and emotion. Each piece is a unique expression — available as originals or commissioned works tailored to your vision.</p>
+                            <ul class="service-features">
+                                <li>Original Paintings</li>
+                                <li>Commissioned Work</li>
+                                <li>Art Exhibitions</li>
+                                <li>Custom Pieces</li>
+                            </ul>
+                            <a href="#contact" class="service-link">Inquire <span>&rarr;</span></a>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Instagram Gallery Section -->
+        <!-- Photo Gallery Section -->
         <section id="gallery" class="section gallery">
             <div class="container">
-                <div class="section-label reveal">Follow the Journey</div>
-                <h2 class="section-title reveal">Our <em>Instagram</em></h2>
-                <p class="section-subtitle reveal">Fresh content from our kitchen, events, and studio — follow along for daily inspiration.</p>
+                <div class="section-label reveal">Our Creations</div>
+                <h2 class="section-title reveal">The <em>Gallery</em></h2>
+                <p class="section-subtitle reveal">A taste of what we do — from pastries and breads to chocolates and confections.</p>
 
-                <div class="instagram-feed reveal">
-                    <div class="instagram-embed-wrapper">
-                        <!-- Instagram Profile Embed -->
-                        <iframe
-                            src="https://www.instagram.com/flavoseason/embed"
-                            width="100%"
-                            height="800"
-                            frameborder="0"
-                            scrolling="yes"
-                            allowtransparency="true"
-                            loading="lazy"
-                            title="flavoseason Instagram Feed"
-                        ></iframe>
+                <div class="gallery-filters reveal">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="pastry">Pastries</button>
+                    <button class="filter-btn" data-filter="chocolate">Chocolates</button>
+                    <button class="filter-btn" data-filter="bread">Breads</button>
+                </div>
+
+                <div class="gallery-grid reveal">
+                    <div class="gallery-item" data-category="pastry">
+                        <img src="images-donuts.jpeg" alt="Artisan glazed donuts" loading="lazy">
+                        <div class="gallery-overlay">
+                            <span>Artisan Donuts</span>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="chocolate">
+                        <img src="images-eclairs.jpeg" alt="Chocolate eclairs" loading="lazy">
+                        <div class="gallery-overlay">
+                            <span>Chocolate Eclairs</span>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="bread">
+                        <img src="images-focaccia.jpeg" alt="Rosemary focaccia" loading="lazy">
+                        <div class="gallery-overlay">
+                            <span>Rosemary Focaccia</span>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="chocolate">
+                        <img src="images-bonbons.jpeg" alt="Handcrafted bonbons" loading="lazy">
+                        <div class="gallery-overlay">
+                            <span>Artisan Bonbons</span>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="chocolate">
+                        <img src="images-gold-chocolates.jpeg" alt="Gold dusted chocolates" loading="lazy">
+                        <div class="gallery-overlay">
+                            <span>Gold Chocolates</span>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="pastry">
+                        <img src="images-madeleines.jpeg" alt="Madeleines and petit fours" loading="lazy">
+                        <div class="gallery-overlay">
+                            <span>Madeleines & Petit Fours</span>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="bread">
+                        <img src="images-bread-variety.jpeg" alt="Artisan bread selection" loading="lazy">
+                        <div class="gallery-overlay">
+                            <span>Artisan Breads</span>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="pastry">
+                        <img src="images-caramel-eclairs.jpeg" alt="Caramel coconut eclairs" loading="lazy">
+                        <div class="gallery-overlay">
+                            <span>Caramel Eclairs</span>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="chocolate">
+                        <img src="images-caneles.jpeg" alt="Chocolate caneles" loading="lazy">
+                        <div class="gallery-overlay">
+                            <span>Caneles</span>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="chocolate">
+                        <img src="images-confections.jpeg" alt="Luxury confections platter" loading="lazy">
+                        <div class="gallery-overlay">
+                            <span>Luxury Confections</span>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="bread">
+                        <img src="images-brioche.jpeg" alt="Golden brioche buns" loading="lazy">
+                        <div class="gallery-overlay">
+                            <span>Golden Brioche</span>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="pastry">
+                        <img src="images-brownies.jpeg" alt="Brownies and biscuits" loading="lazy">
+                        <div class="gallery-overlay">
+                            <span>Brownies & Biscuits</span>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="chocolate">
+                        <img src="images-nougat.jpeg" alt="Pistachio nougat" loading="lazy">
+                        <div class="gallery-overlay">
+                            <span>Pistachio Nougat</span>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="bread">
+                        <img src="images-ciabatta.jpeg" alt="Fresh ciabatta bread" loading="lazy">
+                        <div class="gallery-overlay">
+                            <span>Ciabatta</span>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="chocolate">
+                        <img src="images-chocolate-molds.jpeg" alt="Chocolate molds" loading="lazy">
+                        <div class="gallery-overlay">
+                            <span>Chocolate Molds</span>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="bread">
+                        <img src="images-rustic-bread.jpeg" alt="Rustic bread assortment" loading="lazy">
+                        <div class="gallery-overlay">
+                            <span>Rustic Breads</span>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="bread">
+                        <img src="images-focaccia-top.jpeg" alt="Focaccia top view" loading="lazy">
+                        <div class="gallery-overlay">
+                            <span>Focaccia</span>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="bread">
+                        <img src="images-olive-bread.jpeg" alt="Olive bread rolls" loading="lazy">
+                        <div class="gallery-overlay">
+                            <span>Olive Bread</span>
+                        </div>
                     </div>
                 </div>
 
@@ -235,7 +318,7 @@
                             <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
                             <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
                         </svg>
-                        Follow @flavoseason on Instagram
+                        See More on Instagram
                     </a>
                 </div>
             </div>
@@ -244,8 +327,8 @@
         <!-- Marquee / Scrolling Text -->
         <div class="marquee-section">
             <div class="marquee-track">
-                <span>Chef Services &bull; Event Planning &bull; Fine Art &bull; Private Dining &bull; Catering &bull; Painting &bull; Workshops &bull; Exhibitions &bull; </span>
-                <span>Chef Services &bull; Event Planning &bull; Fine Art &bull; Private Dining &bull; Catering &bull; Painting &bull; Workshops &bull; Exhibitions &bull; </span>
+                <span>Pastries &bull; Chocolates &bull; Artisan Breads &bull; Private Dining &bull; Catering &bull; Events &bull; Confections &bull; Workshops &bull; </span>
+                <span>Pastries &bull; Chocolates &bull; Artisan Breads &bull; Private Dining &bull; Catering &bull; Events &bull; Confections &bull; Workshops &bull; </span>
             </div>
         </div>
 
@@ -352,6 +435,17 @@
             </div>
         </div>
     </footer>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" aria-label="Close">&times;</button>
+        <button class="lightbox-prev" aria-label="Previous">&lsaquo;</button>
+        <button class="lightbox-next" aria-label="Next">&rsaquo;</button>
+        <div class="lightbox-content">
+            <img id="lightbox-img" src="" alt="">
+        </div>
+        <div class="lightbox-caption" id="lightbox-caption"></div>
+    </div>
 
     <script src="js/main.js"></script>
 </body>

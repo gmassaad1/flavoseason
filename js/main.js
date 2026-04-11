@@ -1,5 +1,6 @@
 // ============================================
-// flavoseason — Main JavaScript v2
+// flavoseason — Main JavaScript v3
+// With Photo Gallery & Lightbox
 // ============================================
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -115,6 +116,90 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { threshold: 0.5 });
 
     counters.forEach(counter => counterObserver.observe(counter));
+
+    // --- Gallery Filters ---
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const galleryItems = document.querySelectorAll('.gallery-item');
+
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            filterBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            const filter = btn.dataset.filter;
+            galleryItems.forEach(item => {
+                if (filter === 'all' || item.dataset.category === filter) {
+                    item.classList.remove('hidden');
+                } else {
+                    item.classList.add('hidden');
+                }
+            });
+        });
+    });
+
+    // --- Lightbox ---
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxCaption = document.getElementById('lightbox-caption');
+    const lightboxClose = document.querySelector('.lightbox-close');
+    const lightboxPrev = document.querySelector('.lightbox-prev');
+    const lightboxNext = document.querySelector('.lightbox-next');
+    let currentIndex = 0;
+
+    function getVisibleItems() {
+        return Array.from(galleryItems).filter(item => !item.classList.contains('hidden'));
+    }
+
+    function openLightbox(index) {
+        const items = getVisibleItems();
+        if (index < 0 || index >= items.length) return;
+        currentIndex = index;
+        const img = items[index].querySelector('img');
+        const caption = items[index].querySelector('.gallery-overlay span');
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt;
+        lightboxCaption.textContent = caption ? caption.textContent : '';
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    function navigateLightbox(direction) {
+        const items = getVisibleItems();
+        currentIndex = (currentIndex + direction + items.length) % items.length;
+        const img = items[currentIndex].querySelector('img');
+        const caption = items[currentIndex].querySelector('.gallery-overlay span');
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt;
+        lightboxCaption.textContent = caption ? caption.textContent : '';
+    }
+
+    galleryItems.forEach((item, i) => {
+        item.addEventListener('click', () => {
+            const visibleItems = getVisibleItems();
+            const visibleIndex = visibleItems.indexOf(item);
+            openLightbox(visibleIndex);
+        });
+    });
+
+    lightboxClose.addEventListener('click', closeLightbox);
+    lightboxPrev.addEventListener('click', () => navigateLightbox(-1));
+    lightboxNext.addEventListener('click', () => navigateLightbox(1));
+
+    lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) closeLightbox();
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (!lightbox.classList.contains('active')) return;
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowLeft') navigateLightbox(-1);
+        if (e.key === 'ArrowRight') navigateLightbox(1);
+    });
 
     // --- Smooth Scroll for all anchor links ---
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
